@@ -9,7 +9,7 @@ third_side = gets.chomp.to_f
 
 all_sides = [first_side, second_side, third_side].sort!
 
-answer = 'This triangle is '
+answer = ''
 
 if all_sides.uniq.size == 1
   answer += 'isosceles and equilateral, but not rectangular'
@@ -21,4 +21,4 @@ else
   answer += types.join(' and ')
 end
 
-puts answer += '.'
+puts "This triangle is #{answer.empty? ? 'simple' : answer}."

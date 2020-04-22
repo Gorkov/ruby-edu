@@ -9,16 +9,20 @@ third_side = gets.chomp.to_f
 
 all_sides = [first_side, second_side, third_side].sort!
 
-answer = ''
-
-if all_sides.uniq.size == 1
-  answer += 'isosceles and equilateral, but not rectangular'
+if all_sides.include?(0.0)
+  puts 'Enter correct values please.'
 else
-  types = []
-  types << 'rectangular' if (all_sides[0]**2) + (all_sides[1]**2) == (all_sides[2]**2)
-  types << 'isosceles' if all_sides[0] == all_sides[1]
+  answer = ''
 
-  answer += types.join(' and ')
+  if all_sides.uniq.size == 1
+    answer += 'isosceles and equilateral, but not rectangular'
+  else
+    types = []
+    types << 'rectangular' if (all_sides[0]**2) + (all_sides[1]**2) == (all_sides[2]**2)
+    types << 'isosceles' if all_sides[0] == all_sides[1]
+
+    answer += types.join(' and ')
+  end
+
+  puts "This triangle is #{answer.empty? ? 'simple' : answer}."
 end
-
-puts "This triangle is #{answer.empty? ? 'simple' : answer}."

@@ -1,7 +1,3 @@
-class Train
-
-end
-
 class RailwayStation
   attr_reader :trains, :name
 

@@ -1,6 +1,6 @@
 require 'date'
-
-(1..12).each do |month_number|
-  last_month_day = Date.civil(Date.today.year, month_number, -1)
-  puts last_month_day.strftime('%b') if last_month_day.strftime('%d').to_i == 30
-end
+months_hash = (1..12).map do |month_index|
+  day = Date.civil(Date.today.year, month_index, -1)
+  [day.strftime('%b'), day.day]
+end.to_h
+months_hash.each { |name, size| puts name if size == 30 }

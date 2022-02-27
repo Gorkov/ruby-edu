@@ -1,16 +1,7 @@
-pre_last = 1
-last = 1
-current = 0
-
-result_array = []
-
-while current < 100
-  current = pre_last + last
-
-  result_array << current if current < 100
-
-  pre_last = last
-  last = current
+max_number = 101
+fib_array = [0, 1]
+while fib_array.max < max_number do
+  next_number = fib_array[-1] + fib_array[-2]
+  break if next_number > (max_number - 1)
+  fib_array << next_number
 end
-
-p result_array

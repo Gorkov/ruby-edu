@@ -1,31 +1,19 @@
 require 'date'
-
-puts 'Enter date'
-date = gets.chomp.to_i
-unless date
-  puts 'Date cannot be blank!'
-  exit
-end
-
-puts 'Enter month'
-month = gets.chomp.to_i
-unless month
-  puts 'Month cannot be blank!'
-  exit
-end
-
-puts 'Enter year'
-year = gets.chomp.to_i
-unless year
-  puts 'Year cannot be blank!'
-  exit
-end
-
+puts 'Type date in format DD.MM.YYYY'
 begin
-  current_date = Date.new(year, month, date)
+  date = Date.parse(gets.chomp)
 rescue
-  puts 'Invalid date!'
-  exit
+  puts 'Incorrect date. Please try again'
+  return
 end
-
-p current_date.yday
+input_month_number = date.strftime('%m').to_i
+input_day_number = date.strftime('%d').to_i
+puts 'Sum of days in this year by current date:'
+if input_month_number == 1
+  puts input_day_number
+else
+  count_of_prev_months = (1..(input_month_number - 1)).map do |month_number|
+    Date.civil(date.year, month_number, -1).day
+  end.compact.inject(0, :+)
+  puts input_day_number + count_of_prev_months
+end
